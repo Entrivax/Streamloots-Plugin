@@ -1,0 +1,111 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "http://entrivax.fr/streamloots/cards.schema.json",
+    "title": "Cards",
+    "description": "Cards list for Streamloots Spigot plugin",
+    "type": "array",
+    "items": { "$ref": "#/definitions/card" },
+    "definitions": {
+        "card": {
+            "type": "object",
+            "required": [ "id", "commands" ],
+            "properties": {
+                "id": { "type": "string", "title": "Card id", "description": "The Streamloots' card id" },
+                "commands": { "type": "array", "items": { "$ref": "#/definitions/command" }, "title": "Commands", "description": "The commands to execute" }
+            }
+        },
+        "playerList": {
+            "type": "string",
+            "regex": "^\\^?([a-zA-Z0-9-_]+,?)+$"
+        },
+        "position": {
+            "type": "object",
+            "properties": {
+                "x": { "type": "number", "description": "Absolute X position" },
+                "y": { "type": "number", "description": "Absolute Y position" },
+                "z": { "type": "number", "description": "Absolute Z position" },
+                "rx": { "type": "number", "description": "Relative to player X position" },
+                "ry": { "type": "number", "description": "Relative to player Y position" },
+                "rz": { "type": "number", "description": "Relative to player Z position" },
+                "front": { "type": "number", "description": "Relative to player front direction" },
+                "left": { "type": "number", "description": "Relative to player left direction" }
+            },
+            "additionalProperties": false
+        },
+        "command": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "title": "Drop current item command",
+                    "properties": {
+                        "type": { "type": "string", "const": "DROPCURRENT", "description": "DROPCURRENT" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" }
+                    },
+                    "required": [ "type", "applyOn" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Execute command",
+                    "properties": {
+                        "type": { "type": "string", "const": "COMMAND", "description": "COMMAND" },
+                        "command": { "type": "string", "title": "Command", "description": "Chat command to execute" }
+                    },
+                    "required": [ "type", "command" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Give item command",
+                    "properties": {
+                        "type": { "type": "string", "const": "GIVEITEM", "description": "GIVEITEM" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "item": { "type": "string", "title": "Item name" },
+                        "amount": { "type": "integer", "minimum": 0, "title": "Quantity" }
+                    },
+                    "required": [ "type", "applyOn", "item" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Play sound command",
+                    "properties": {
+                        "type": { "type": "string", "const": "PLAYSOUND", "description": "PLAYSOUND" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "sound": { "type": "string", "Title": "Sound", "description": "The sound to play" },
+                        "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to play the sound" }
+                    },
+                    "required": [ "type", "applyOn", "sound", "position" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Set player's health command",
+                    "properties": {
+                        "type": { "type": "string", "const": "SETHEALTH", "description": "SETHEALTH" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "amount": { "type": "integer", "minimum": 0, "title": "Health level", "description": "0 = death, 20 = 10 hearts" }
+                    },
+                    "required": [ "type", "applyOn", "amount" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Heal player command",
+                    "properties": {
+                        "type": { "type": "string", "const": "HEAL", "description": "HEAL" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "amount": { "type": "integer", "title": "Heal", "description": "Heal amount (1 = half a heart)" }
+                    },
+                    "required": [ "type", "applyOn", "amount" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Set player's hunger command",
+                    "properties": {
+                        "type": { "type": "string", "const": "SETHUNGER", "description": "SETHUNGER" },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "amount": { "type": "integer", "minimum": 0, "maximum": 20, "title": "Hunger level", "description": "0-20" }
+                    },
+                    "required": [ "type", "applyOn", "amount" ],
+                    "additionalProperties": false
+                }
+            ]
+        }
+    }
+}
