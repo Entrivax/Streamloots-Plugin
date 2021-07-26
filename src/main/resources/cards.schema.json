@@ -36,6 +36,15 @@
             "type": "object",
             "oneOf": [
                 {
+                    "title": "Delete current item command",
+                    "properties": {
+                        "type": { "type": "string", "enum": ["DELETECURRENT"] },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" }
+                    },
+                    "required": [ "type", "applyOn" ],
+                    "additionalProperties": false
+                },
+                {
                     "title": "Drop current item command",
                     "properties": {
                         "type": { "type": "string", "enum": ["DROPCURRENT"] },

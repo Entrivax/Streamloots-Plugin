@@ -17,6 +17,8 @@ public class CardCommand {
         COMMAND,
         @SerializedName("GIVEITEM")
         GIVEITEM,
+        @SerializedName("DELETECURRENT")
+        DELETECURRENT,
         @SerializedName("DROPCURRENT")
         DROPCURRENT,
         @SerializedName("HEAL")

@@ -18,6 +18,7 @@ import fr.entrivax.streamloots.commands.StreamlootsCardSpawnItemCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardChatCommandCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardCommandsProcessor;
 import fr.entrivax.streamloots.commands.StreamlootsCardDelayCommand;
+import fr.entrivax.streamloots.commands.StreamlootsCardDeleteCurrentItemCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardDropCurrentCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -80,6 +81,8 @@ public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandl
                 return new StreamlootsCardChatCommandCommand(_plugin, cardCommand.command);
             case DELAY:
                 return new StreamlootsCardDelayCommand(_plugin, cardCommand.amount);
+            case DELETECURRENT:
+                return new StreamlootsCardDeleteCurrentItemCommand(_plugin, cardCommand.applyOn, _logger);
             case DROPCURRENT:
                 return new StreamlootsCardDropCurrentCommand(_plugin, cardCommand.applyOn, _logger);
             case GIVEITEM:
