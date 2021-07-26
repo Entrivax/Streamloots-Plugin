@@ -21,14 +21,14 @@
         "position": {
             "type": "object",
             "properties": {
-                "x": { "type": "number", "description": "Absolute X position" },
-                "y": { "type": "number", "description": "Absolute Y position" },
-                "z": { "type": "number", "description": "Absolute Z position" },
-                "rx": { "type": "number", "description": "Relative to player X position" },
-                "ry": { "type": "number", "description": "Relative to player Y position" },
-                "rz": { "type": "number", "description": "Relative to player Z position" },
-                "front": { "type": "number", "description": "Relative to player front direction" },
-                "left": { "type": "number", "description": "Relative to player left direction" }
+                "x": { "type": "number", "description": "Absolute X position", "optional": true },
+                "y": { "type": "number", "description": "Absolute Y position", "optional": true },
+                "z": { "type": "number", "description": "Absolute Z position", "optional": true },
+                "rx": { "type": "number", "description": "Relative to player X position", "optional": true },
+                "ry": { "type": "number", "description": "Relative to player Y position", "optional": true },
+                "rz": { "type": "number", "description": "Relative to player Z position", "optional": true },
+                "front": { "type": "number", "description": "Relative to player front direction", "optional": true },
+                "left": { "type": "number", "description": "Relative to player left direction", "optional": true }
             },
             "additionalProperties": false
         },
@@ -38,7 +38,7 @@
                 {
                     "title": "Drop current item command",
                     "properties": {
-                        "type": { "type": "string", "const": "DROPCURRENT", "description": "DROPCURRENT" },
+                        "type": { "type": "string", "enum": ["DROPCURRENT"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" }
                     },
                     "required": [ "type", "applyOn" ],
@@ -47,7 +47,7 @@
                 {
                     "title": "Execute command",
                     "properties": {
-                        "type": { "type": "string", "const": "COMMAND", "description": "COMMAND" },
+                        "type": { "type": "string", "enum": ["COMMAND"] },
                         "command": { "type": "string", "title": "Command", "description": "Chat command to execute" }
                     },
                     "required": [ "type", "command" ],
@@ -56,10 +56,22 @@
                 {
                     "title": "Give item command",
                     "properties": {
-                        "type": { "type": "string", "const": "GIVEITEM", "description": "GIVEITEM" },
+                        "type": { "type": "string", "enum": ["GIVEITEM"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
-                        "item": { "type": "string", "title": "Item name" },
-                        "amount": { "type": "integer", "minimum": 0, "title": "Quantity" }
+                        "item": { "type": "string", "title": "Item", "description": "List of available items at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" },
+                        "amount": { "type": "integer", "minimum": 0, "title": "Quantity", "description": "Default to 1" }
+                    },
+                    "required": [ "type", "applyOn", "item" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Spawn item command",
+                    "properties": {
+                        "type": { "type": "string", "enum": ["SPAWNITEM"] },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players", "optional": true },
+                        "item": { "type": "string", "title": "Item", "description": "List of available items at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" },
+                        "amount": { "type": "integer", "minimum": 0, "title": "Quantity", "description": "Default to 1" },
+                        "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to spawn the item" }
                     },
                     "required": [ "type", "applyOn", "item" ],
                     "additionalProperties": false
@@ -67,9 +79,9 @@
                 {
                     "title": "Play sound command",
                     "properties": {
-                        "type": { "type": "string", "const": "PLAYSOUND", "description": "PLAYSOUND" },
+                        "type": { "type": "string", "enum": ["PLAYSOUND"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
-                        "sound": { "type": "string", "Title": "Sound", "description": "The sound to play" },
+                        "sound": { "type": "string", "Title": "Sound", "description": "The sound to play. List of available sounds at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html (lowercase the value and replace underscores `_` with dots `.`)" },
                         "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to play the sound" }
                     },
                     "required": [ "type", "applyOn", "sound", "position" ],
@@ -78,7 +90,7 @@
                 {
                     "title": "Set player's health command",
                     "properties": {
-                        "type": { "type": "string", "const": "SETHEALTH", "description": "SETHEALTH" },
+                        "type": { "type": "string", "enum": ["SETHEALTH"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
                         "amount": { "type": "integer", "minimum": 0, "title": "Health level", "description": "0 = death, 20 = 10 hearts" }
                     },
@@ -88,7 +100,7 @@
                 {
                     "title": "Heal player command",
                     "properties": {
-                        "type": { "type": "string", "const": "HEAL", "description": "HEAL" },
+                        "type": { "type": "string", "enum": ["HEAL"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
                         "amount": { "type": "integer", "title": "Heal", "description": "Heal amount (1 = half a heart)" }
                     },
@@ -98,7 +110,7 @@
                 {
                     "title": "Set player's hunger command",
                     "properties": {
-                        "type": { "type": "string", "const": "SETHUNGER", "description": "SETHUNGER" },
+                        "type": { "type": "string", "enum": ["SETHUNGER"] },
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
                         "amount": { "type": "integer", "minimum": 0, "maximum": 20, "title": "Hunger level", "description": "0-20" }
                     },
