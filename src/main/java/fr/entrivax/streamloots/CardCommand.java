@@ -28,6 +28,8 @@ public class CardCommand {
         @SerializedName("PLAYSOUND")
         PLAYSOUND,
         @SerializedName("DELAY")
-        DELAY
+        DELAY,
+        @SerializedName("SPAWNITEM")
+        SPAWNITEM
     }
 }

@@ -14,6 +14,7 @@ import fr.entrivax.streamloots.commands.StreamlootsCardHealCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardPlaySoundCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardSetHealthCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardSetHungerCommand;
+import fr.entrivax.streamloots.commands.StreamlootsCardSpawnItemCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardChatCommandCommand;
 import fr.entrivax.streamloots.commands.StreamlootsCardCommandsProcessor;
 import fr.entrivax.streamloots.commands.StreamlootsCardDelayCommand;
@@ -91,6 +92,8 @@ public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandl
                 return new StreamlootsCardSetHealthCommand(_plugin, cardCommand.applyOn, cardCommand.amount, _logger);
             case SETHUNGER:
                 return new StreamlootsCardSetHungerCommand(_plugin, cardCommand.applyOn, cardCommand.amount, _logger);
+            case SPAWNITEM:
+                return new StreamlootsCardSpawnItemCommand(_plugin, cardCommand.applyOn, cardCommand.item, cardCommand.amount, cardCommand.position, _logger);
         }
         return null;
     }
