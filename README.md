@@ -1,3 +1,3 @@
 # Streamloots-Plugin
 
-Streamloots plugin for Spigot based Minecraft servers
+Streamloots plugin for [PaperMC](https://papermc.io/) based Minecraft servers
