@@ -13,12 +13,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.entrivax.streamloots.PlayersHelper;
 
-public class StreamlootsCardDropCurrentCommand implements IStreamlootsCardCommand {
+public class StreamlootsCardDeleteCurrentItemCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;
     private String _applyOn;
     private Logger _logger;
     private boolean _cancelled = false;
-    public StreamlootsCardDropCurrentCommand(JavaPlugin plugin, String applyOn, Logger logger) {
+    public StreamlootsCardDeleteCurrentItemCommand(JavaPlugin plugin, String applyOn, Logger logger) {
         this._plugin = plugin;
         this._applyOn = applyOn;
         this._logger = logger;
@@ -37,11 +37,9 @@ public class StreamlootsCardDropCurrentCommand implements IStreamlootsCardComman
                     Player player = players.get(i);
                     PlayerInventory pInv = player.getInventory();
                     ItemStack itemToDrop = pInv.getItemInMainHand();
-                    _logger.log(Level.INFO, itemToDrop.getType().name());
                     if (itemToDrop.getType() != Material.AIR) {
                         pInv.setItemInMainHand(new ItemStack(Material.AIR));
-                        _logger.log(Level.INFO, "Dropping items in hand of " + player.getName());
-                        player.getWorld().dropItem(player.getLocation(), itemToDrop).setPickupDelay(40);;
+                        _logger.log(Level.INFO, "Delete items in hand of " + player.getName());
                     }
                 }
                 next.run();
