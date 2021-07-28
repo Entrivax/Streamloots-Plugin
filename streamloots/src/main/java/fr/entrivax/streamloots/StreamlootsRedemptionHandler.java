@@ -52,9 +52,9 @@ public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandl
             .append(Component.text(" " + cardInfo.message)));
         for (int i = 0; i < _cardConfigs.size(); i++) {
             CardConfig cardConfig = _cardConfigs.get(i);
-            EntryPoint.logger.log(Level.INFO, "Comparing " + cardInfo.data.cardId + " with " + cardConfig.id);
+            _logger.log(Level.INFO, "Comparing " + cardInfo.data.cardId + " with " + cardConfig.id);
             if (cardConfig.id.equals(cardInfo.data.cardId)) {
-                EntryPoint.logger.log(Level.INFO, "Card config found");
+                _logger.log(Level.INFO, "Card config found");
                 processCardCommands(cardConfig);
                 break;
             }

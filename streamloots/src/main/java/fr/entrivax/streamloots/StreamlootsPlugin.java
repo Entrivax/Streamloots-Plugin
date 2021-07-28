@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class EntryPoint extends JavaPlugin {
+public class StreamlootsPlugin extends JavaPlugin {
     protected static Logger logger;
     private StreamlootsClientManager _streamlootsManager;
 

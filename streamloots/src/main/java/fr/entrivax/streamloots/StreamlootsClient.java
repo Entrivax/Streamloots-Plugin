@@ -30,7 +30,7 @@ public class StreamlootsClient {
                             _redemptionHandler.handle(event);
                         }
                     } catch (Exception e) {
-                        EntryPoint.logger.log(Level.SEVERE, e.toString());
+                        _logger.log(Level.SEVERE, e.toString());
                         e.printStackTrace();
                     }
                 }

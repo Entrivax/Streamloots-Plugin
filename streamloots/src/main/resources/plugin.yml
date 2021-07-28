@@ -1,4 +1,4 @@
-main: "fr.entrivax.streamloots.EntryPoint"
+main: "fr.entrivax.streamloots.StreamlootsPlugin"
 author: Entrivax
 version: 0.1
 name: "Streamloots"
