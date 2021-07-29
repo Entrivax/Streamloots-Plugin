@@ -133,7 +133,18 @@
                         "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
                         "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to teleport the player" }
                     },
-                    "required": [ "type", "position" ],
+                    "required": [ "type", "applyOn", "position" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Delay command",
+                    "properties": {
+                        "type": { "type": "string", "enum": ["DELAY"] },
+                        "delayName": { "type": "string", "title": "Timer name used for the remaining time bar" },
+                        "displayTo": { "$ref": "#/definitions/playerList", "title": "Display the time remaining to players" },
+                        "amount": { "type": "integer", "minimum": 1, "title": "Time", "description": "Time to wait in ticks (20 ticks = 1 second)" }
+                    },
+                    "required": [ "type", "amount" ],
                     "additionalProperties": false
                 }
             ]
