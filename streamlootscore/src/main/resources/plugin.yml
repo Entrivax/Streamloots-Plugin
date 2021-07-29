@@ -1,0 +1,15 @@
+main: "fr.entrivax.streamlootscore.StreamlootsPlugin"
+author: Entrivax
+version: 0.1
+name: "Streamloots-Core"
+api-version: 1.17
+
+commands:
+  streamloots:
+    usage: /<command> <reload>
+    description: Streamloots main command.
+    permission: streamloots.reload
+permissions:
+  streamloots.reload:
+    default: op
+    description: Allows you to reload the plugin's config and connection
