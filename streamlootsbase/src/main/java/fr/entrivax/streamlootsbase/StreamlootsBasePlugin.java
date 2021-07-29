@@ -99,6 +99,13 @@ public class StreamlootsBasePlugin extends JavaPlugin {
                 return new StreamlootsCardSpawnItemCommand(plugin, cardCommand.command.get("applyOn").getAsString(), cardCommand.command.get("item").getAsString(), amount != null ? amount.getAsInt() : null, getPositionFrom(cardCommand.command.getAsJsonObject("position")), logger);
             }
         });
+
+        registry.registerBuilder("TELEPORT", new IStreamlootsCommandBuilder(){
+            @Override
+            public IStreamlootsCardCommand build(CardCommand cardCommand) {
+                return new StreamlootsCardTeleportCommand(plugin, cardCommand.command.get("applyOn").getAsString(), getPositionFrom(cardCommand.command.getAsJsonObject("position")));
+            }
+        });
     }
 
     private Position getPositionFrom(JsonObject jsonObject) {

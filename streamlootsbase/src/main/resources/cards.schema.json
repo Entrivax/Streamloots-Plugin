@@ -77,12 +77,12 @@
                     "title": "Spawn item command",
                     "properties": {
                         "type": { "type": "string", "enum": ["SPAWNITEM"] },
-                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players", "optional": true },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
                         "item": { "type": "string", "title": "Item", "description": "List of available items at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" },
                         "amount": { "type": "integer", "minimum": 0, "title": "Quantity", "description": "Default to 1" },
                         "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to spawn the item" }
                     },
-                    "required": [ "type", "applyOn", "item" ],
+                    "required": [ "type", "applyOn", "item", "position" ],
                     "additionalProperties": false
                 },
                 {
@@ -124,6 +124,16 @@
                         "amount": { "type": "integer", "minimum": 0, "maximum": 20, "title": "Hunger level", "description": "0-20" }
                     },
                     "required": [ "type", "applyOn", "amount" ],
+                    "additionalProperties": false
+                },
+                {
+                    "title": "Teleport command",
+                    "properties": {
+                        "type": { "type": "string", "enum": ["TELEPORT"] },
+                        "applyOn": { "$ref": "#/definitions/playerList", "title": "Apply on players" },
+                        "position": { "$ref": "#/definitions/position", "title": "Position", "description": "Position to teleport the player" }
+                    },
+                    "required": [ "type", "position" ],
                     "additionalProperties": false
                 }
             ]
