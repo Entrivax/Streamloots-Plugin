@@ -38,7 +38,9 @@ public class StreamlootsBasePlugin extends JavaPlugin {
         registry.registerBuilder("DELAY", new IStreamlootsCommandBuilder(){
             @Override
             public IStreamlootsCardCommand build(CardCommand cardCommand) {
-                return new StreamlootsCardDelayCommand(plugin, cardCommand.command.get("amount").getAsInt());
+                JsonElement delayName = cardCommand.command.get("delayName");
+                JsonElement displayTo = cardCommand.command.get("displayTo");
+                return new StreamlootsCardDelayCommand(plugin, cardCommand.command.get("amount").getAsInt(), delayName != null ? delayName.getAsString() : null, displayTo != null ? displayTo.getAsString() : null);
             }
         });
 
