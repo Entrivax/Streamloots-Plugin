@@ -43,6 +43,9 @@ public class PlayersHelper {
     }
 
     public static List<Player> getTargetedPlayers(Server server, String playerString) {
+        if (playerString == null || playerString.isEmpty()) {
+            return new ArrayList<Player>();
+        }
         boolean revertResult = false;
         ArrayList<Player> players = new ArrayList<Player>();
         if (playerString.startsWith("^")) {
