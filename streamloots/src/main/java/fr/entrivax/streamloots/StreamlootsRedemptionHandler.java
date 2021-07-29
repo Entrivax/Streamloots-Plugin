@@ -9,31 +9,22 @@ import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardGiveItemCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardHealCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardPlaySoundCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardSetHealthCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardSetHungerCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardSpawnItemCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardChatCommandCommand;
+import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamloots.commands.IStreamlootsCommandBuilder;
 import fr.entrivax.streamloots.commands.StreamlootsCardCommandsProcessor;
-import fr.entrivax.streamloots.commands.StreamlootsCardDelayCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardDeleteCurrentItemCommand;
-import fr.entrivax.streamloots.commands.StreamlootsCardDropCurrentCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 
 public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandler {
     private List<CardConfig> _cardConfigs;
     private Server _server;
-    private JavaPlugin _plugin;
     private Logger _logger;
     private ArrayList<StreamlootsCardCommandsProcessor> _runningProcessors;
-    public StreamlootsRedemptionHandler(JavaPlugin plugin, List<CardConfig> cardConfigs, Logger logger) {
+    private IStreamlootsCardRegistry _cardRegistry;
+    public StreamlootsRedemptionHandler(JavaPlugin plugin, List<CardConfig> cardConfigs, IStreamlootsCardRegistry cardRegistry, Logger logger) {
         _cardConfigs = cardConfigs;
         _logger = logger;
-        _logger.log(Level.INFO, "Loaded " + cardConfigs.size() + " cards");
-        _plugin = plugin;
+        _cardRegistry = cardRegistry;
         _runningProcessors = new ArrayList<StreamlootsCardCommandsProcessor>();
         _server = plugin.getServer();
     }
@@ -52,9 +43,7 @@ public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandl
             .append(Component.text(" " + cardInfo.message)));
         for (int i = 0; i < _cardConfigs.size(); i++) {
             CardConfig cardConfig = _cardConfigs.get(i);
-            _logger.log(Level.INFO, "Comparing " + cardInfo.data.cardId + " with " + cardConfig.id);
             if (cardConfig.id.equals(cardInfo.data.cardId)) {
-                _logger.log(Level.INFO, "Card config found");
                 processCardCommands(cardConfig);
                 break;
             }
@@ -76,27 +65,11 @@ public class StreamlootsRedemptionHandler implements IStreamlootsRedemptionHandl
         });
     }
     private IStreamlootsCardCommand getCommand(CardCommand cardCommand) {
-        switch (cardCommand.type) {
-            case COMMAND:
-                return new StreamlootsCardChatCommandCommand(_plugin, cardCommand.command);
-            case DELAY:
-                return new StreamlootsCardDelayCommand(_plugin, cardCommand.amount);
-            case DELETECURRENT:
-                return new StreamlootsCardDeleteCurrentItemCommand(_plugin, cardCommand.applyOn, _logger);
-            case DROPCURRENT:
-                return new StreamlootsCardDropCurrentCommand(_plugin, cardCommand.applyOn, _logger);
-            case GIVEITEM:
-                return new StreamlootsCardGiveItemCommand(_plugin, cardCommand.applyOn, cardCommand.item, cardCommand.amount, _logger);
-            case HEAL:
-                return new StreamlootsCardHealCommand(_plugin, cardCommand.applyOn, cardCommand.amount, _logger);
-            case PLAYSOUND:
-                return new StreamlootsCardPlaySoundCommand(_plugin, cardCommand.applyOn, cardCommand.sound, cardCommand.position);
-            case SETHEALTH:
-                return new StreamlootsCardSetHealthCommand(_plugin, cardCommand.applyOn, cardCommand.amount, _logger);
-            case SETHUNGER:
-                return new StreamlootsCardSetHungerCommand(_plugin, cardCommand.applyOn, cardCommand.amount, _logger);
-            case SPAWNITEM:
-                return new StreamlootsCardSpawnItemCommand(_plugin, cardCommand.applyOn, cardCommand.item, cardCommand.amount, cardCommand.position, _logger);
+        IStreamlootsCommandBuilder builder = _cardRegistry.getBuilder(cardCommand.type);
+        if (builder == null) {
+            _logger.log(Level.WARNING, "No command builder found for the card type \"" + cardCommand.type + "\"");
+        } else {
+            return builder.build(cardCommand);
         }
         return null;
     }

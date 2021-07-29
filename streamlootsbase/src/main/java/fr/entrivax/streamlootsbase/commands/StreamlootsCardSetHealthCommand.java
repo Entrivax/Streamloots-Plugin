@@ -1,22 +1,24 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootsbase.commands;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.PlayersHelper;
+import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootsbase.PlayersHelper;
 
-public class StreamlootsCardSetHungerCommand implements IStreamlootsCardCommand {
+public class StreamlootsCardSetHealthCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;
     private String _applyOn;
     private Integer _amount;
     private Logger _logger;
     private boolean _cancelled = false;
-    public StreamlootsCardSetHungerCommand(JavaPlugin plugin, String applyOn, Integer amount, Logger logger) {
+    public StreamlootsCardSetHealthCommand(JavaPlugin plugin, String applyOn, Integer amount, Logger logger) {
         this._plugin = plugin;
         this._applyOn = applyOn;
         this._logger = logger;
@@ -34,8 +36,9 @@ public class StreamlootsCardSetHungerCommand implements IStreamlootsCardCommand 
                 }
                 for (int i = 0; i < players.size(); i++) {
                     Player player = players.get(i);
-                    player.setFoodLevel(_amount);
-                    _logger.log(Level.INFO, "Player " + player.getName() + " hunger set to " + _amount);
+                    double health = Math.max(0, Math.min(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), _amount));
+                    player.setHealth(health);
+                    _logger.log(Level.INFO, "Player " + player.getName() + " health set to " + Math.round(health));
                 }
                 next.run();
             }

@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootsbase;
 
 import java.util.ArrayList;
 import java.util.List;

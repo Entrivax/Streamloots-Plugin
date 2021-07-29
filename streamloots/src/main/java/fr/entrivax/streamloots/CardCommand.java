@@ -1,37 +1,17 @@
 package fr.entrivax.streamloots;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.JsonObject;
 
 public class CardCommand {
-    public String command;
+    public String type;
+    public JsonObject command;
 
-    public String applyOn;
-    public String item;
-    public Integer amount;
-    public String sound;
-    public Position position;
-    public CardCommandType type;
+    public CardCommand(String type, JsonObject command) {
+        this.type = type;
+        this.command = command;
+    }
 
-    public enum CardCommandType {
-        @SerializedName("COMMAND")
-        COMMAND,
-        @SerializedName("GIVEITEM")
-        GIVEITEM,
-        @SerializedName("DELETECURRENT")
-        DELETECURRENT,
-        @SerializedName("DROPCURRENT")
-        DROPCURRENT,
-        @SerializedName("HEAL")
-        HEAL,
-        @SerializedName("SETHEALTH")
-        SETHEALTH,
-        @SerializedName("SETHUNGER")
-        SETHUNGER,
-        @SerializedName("PLAYSOUND")
-        PLAYSOUND,
-        @SerializedName("DELAY")
-        DELAY,
-        @SerializedName("SPAWNITEM")
-        SPAWNITEM
+    public CardCommand clone() {
+        return new CardCommand(type, command.deepCopy());
     }
 }

@@ -1,14 +1,17 @@
 package fr.entrivax.streamloots;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamloots.commands.StreamlootsCardRegistry;
+
 public class StreamlootsPlugin extends JavaPlugin {
-    protected static Logger logger;
+    private Logger logger;
     private StreamlootsClientManager _streamlootsManager;
+    private StreamlootsCardRegistry _cardRegistry;
 
     @Override
     public void onEnable() {
@@ -17,11 +20,11 @@ public class StreamlootsPlugin extends JavaPlugin {
 
         FileConfiguration config = this.getConfig();
         logger = getLogger();
-        _streamlootsManager = new StreamlootsClientManager(this, config, logger);
+        _cardRegistry = new StreamlootsCardRegistry();
+        _streamlootsManager = new StreamlootsClientManager(this, config, _cardRegistry, logger);
         _streamlootsManager.load();
 
         this.getCommand("streamloots").setExecutor(new StreamlootsCommandExecutor(_streamlootsManager));
-        logger.log(Level.INFO, "Plugin enabled");
     }
 
     @Override
@@ -30,6 +33,14 @@ public class StreamlootsPlugin extends JavaPlugin {
             _streamlootsManager.unload();
             _streamlootsManager = null;
         }
-        logger.log(Level.INFO, "Plugin disabled");
+        if (_cardRegistry != null) {
+            _cardRegistry.destroy();
+            _cardRegistry = null;
+        }
+    }
+
+
+    public IStreamlootsCardRegistry getCardRegistry() {
+        return this._cardRegistry;
     }
 }

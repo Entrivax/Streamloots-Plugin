@@ -1,26 +1,27 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootsbase.commands;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.PlayersHelper;
-import fr.entrivax.streamloots.Position;
+import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootsbase.PlayersHelper;
 
-public class StreamlootsCardPlaySoundCommand implements IStreamlootsCardCommand {
+public class StreamlootsCardSetHungerCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;
     private String _applyOn;
-    private String _sound;
-    private Position _position;
+    private Integer _amount;
+    private Logger _logger;
     private boolean _cancelled = false;
-    public StreamlootsCardPlaySoundCommand(JavaPlugin plugin, String applyOn, String sound, Position position) {
+    public StreamlootsCardSetHungerCommand(JavaPlugin plugin, String applyOn, Integer amount, Logger logger) {
         this._plugin = plugin;
         this._applyOn = applyOn;
-        this._sound = sound;
-        this._position = position;
+        this._logger = logger;
+        this._amount = amount;
     }
 
     @Override
@@ -34,8 +35,8 @@ public class StreamlootsCardPlaySoundCommand implements IStreamlootsCardCommand 
                 }
                 for (int i = 0; i < players.size(); i++) {
                     Player player = players.get(i);
-                    Location soundLocation = PlayersHelper.getLocationFromPlayer(_position, player);
-                    player.playSound(soundLocation, _sound, 1, 1);
+                    player.setFoodLevel(_amount);
+                    _logger.log(Level.INFO, "Player " + player.getName() + " hunger set to " + _amount);
                 }
                 next.run();
             }

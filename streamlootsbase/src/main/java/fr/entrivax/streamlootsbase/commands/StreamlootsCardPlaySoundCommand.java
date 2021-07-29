@@ -1,27 +1,27 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootsbase.commands;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.attribute.Attribute;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.PlayersHelper;
+import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootsbase.PlayersHelper;
+import fr.entrivax.streamlootsbase.Position;
 
-public class StreamlootsCardHealCommand implements IStreamlootsCardCommand {
+public class StreamlootsCardPlaySoundCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;
     private String _applyOn;
-    private Integer _amount;
-    private Logger _logger;
+    private String _sound;
+    private Position _position;
     private boolean _cancelled = false;
-    public StreamlootsCardHealCommand(JavaPlugin plugin, String applyOn, Integer amount, Logger logger) {
+    public StreamlootsCardPlaySoundCommand(JavaPlugin plugin, String applyOn, String sound, Position position) {
         this._plugin = plugin;
         this._applyOn = applyOn;
-        this._logger = logger;
-        this._amount = amount;
+        this._sound = sound;
+        this._position = position;
     }
 
     @Override
@@ -35,10 +35,8 @@ public class StreamlootsCardHealCommand implements IStreamlootsCardCommand {
                 }
                 for (int i = 0; i < players.size(); i++) {
                     Player player = players.get(i);
-                    double currentHealth = player.getHealth();
-                    double health = Math.max(0, Math.min(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue(), currentHealth + _amount));
-                    player.setHealth(health);
-                    _logger.log(Level.INFO, "Player " + player.getName() + " healed (" + Math.round(currentHealth) + " -> " + Math.round(health));
+                    Location soundLocation = PlayersHelper.getLocationFromPlayer(_position, player);
+                    player.playSound(soundLocation, _sound, 1, 1);
                 }
                 next.run();
             }
