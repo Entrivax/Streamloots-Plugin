@@ -1,12 +1,12 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 import java.util.logging.Logger;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
-import fr.entrivax.streamloots.commands.StreamlootsCardRegistry;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamlootscore.commands.StreamlootsCardRegistry;
 
 public class StreamlootsPlugin extends JavaPlugin {
     private Logger logger;

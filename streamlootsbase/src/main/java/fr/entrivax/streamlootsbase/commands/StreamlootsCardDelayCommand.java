@@ -3,7 +3,7 @@ package fr.entrivax.streamlootsbase.commands;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
 
 public class StreamlootsCardDelayCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;

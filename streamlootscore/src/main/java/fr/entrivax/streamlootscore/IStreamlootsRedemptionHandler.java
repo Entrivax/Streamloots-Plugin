@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 public interface IStreamlootsRedemptionHandler {
 	public void handle(StreamlootsRedemption cardInfo);

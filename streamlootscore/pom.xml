@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.entrivax</groupId>
-	<artifactId>streamloots</artifactId>
-	<name>Streamloots</name>
+	<artifactId>streamlootscore</artifactId>
+	<name>Streamloots-Core</name>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -61,7 +61,7 @@
 			                <goal>shade</goal>
 			            </goals>
 			            <configuration>
-			                <finalName>Streamloots</finalName>
+			                <finalName>Streamloots-Core</finalName>
 			                <relocations>
 			                    <relocation>
 			                        <pattern>org.apache.commons</pattern>

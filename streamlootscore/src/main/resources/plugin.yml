@@ -1,7 +1,7 @@
-main: "fr.entrivax.streamloots.StreamlootsPlugin"
+main: "fr.entrivax.streamlootscore.StreamlootsPlugin"
 author: Entrivax
 version: 0.1
-name: "Streamloots"
+name: "Streamloots-Core"
 api-version: 1.17
 
 commands:

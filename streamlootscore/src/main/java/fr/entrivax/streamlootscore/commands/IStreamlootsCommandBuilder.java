@@ -1,6 +1,6 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootscore.commands;
 
-import fr.entrivax.streamloots.CardCommand;
+import fr.entrivax.streamlootscore.CardCommand;
 
 public interface IStreamlootsCommandBuilder {
     public IStreamlootsCardCommand build(CardCommand cardCommand);

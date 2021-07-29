@@ -7,8 +7,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.entrivax</groupId>
-  <artifactId>streamloots</artifactId>
-  <name>Streamloots</name>
+  <artifactId>streamlootscore</artifactId>
+  <name>Streamloots-Core</name>
   <build>
     <plugins>
       <plugin>
@@ -21,7 +21,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <finalName>Streamloots</finalName>
+              <finalName>Streamloots-Core</finalName>
               <relocations>
                 <relocation>
                   <pattern>org.apache.commons</pattern>

@@ -5,11 +5,11 @@ import java.util.logging.Logger;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import fr.entrivax.streamloots.CardCommand;
-import fr.entrivax.streamloots.StreamlootsPlugin;
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
-import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
-import fr.entrivax.streamloots.commands.IStreamlootsCommandBuilder;
+import fr.entrivax.streamlootscore.CardCommand;
+import fr.entrivax.streamlootscore.StreamlootsPlugin;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCommandBuilder;
 import fr.entrivax.streamlootsbase.commands.*;
 
 import org.bukkit.Bukkit;
@@ -20,7 +20,7 @@ public class StreamlootsBasePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         logger = getLogger();
-        StreamlootsPlugin streamlootsPlugin = (StreamlootsPlugin) Bukkit.getServer().getPluginManager().getPlugin("Streamloots");
+        StreamlootsPlugin streamlootsPlugin = (StreamlootsPlugin) Bukkit.getServer().getPluginManager().getPlugin("Streamloots-Core");
         IStreamlootsCardRegistry registry = streamlootsPlugin.getCardRegistry();
         registerCardBuilders(registry);
     }

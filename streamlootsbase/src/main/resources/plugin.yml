@@ -2,5 +2,5 @@ main: "fr.entrivax.streamlootsbase.StreamlootsBasePlugin"
 author: Entrivax
 version: 0.1
 name: "Streamloots-Base"
-depend: ["Streamloots"]
+depend: ["Streamloots-Core"]
 api-version: 1.17

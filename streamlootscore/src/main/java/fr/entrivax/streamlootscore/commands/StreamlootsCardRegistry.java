@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootscore.commands;
 
 import java.util.HashMap;
 

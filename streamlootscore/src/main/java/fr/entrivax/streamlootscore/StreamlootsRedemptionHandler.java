@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,10 @@ import java.util.logging.Logger;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
-import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
-import fr.entrivax.streamloots.commands.IStreamlootsCommandBuilder;
-import fr.entrivax.streamloots.commands.StreamlootsCardCommandsProcessor;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCommandBuilder;
+import fr.entrivax.streamlootscore.commands.StreamlootsCardCommandsProcessor;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 

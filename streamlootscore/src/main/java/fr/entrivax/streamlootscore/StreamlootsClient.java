@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootscore.commands;
 
 public class StreamlootsCardCommandsProcessor {
     IStreamlootsCardCommand[] _commands;

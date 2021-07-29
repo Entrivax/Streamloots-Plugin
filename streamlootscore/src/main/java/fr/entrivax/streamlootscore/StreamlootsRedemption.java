@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 public class StreamlootsRedemption {
 	public String imageUrl;

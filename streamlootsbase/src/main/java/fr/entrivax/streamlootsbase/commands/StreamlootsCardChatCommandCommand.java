@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
 
 public class StreamlootsCardChatCommandCommand implements IStreamlootsCardCommand {
     private JavaPlugin _plugin;

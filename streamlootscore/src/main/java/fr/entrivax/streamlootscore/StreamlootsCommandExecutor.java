@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

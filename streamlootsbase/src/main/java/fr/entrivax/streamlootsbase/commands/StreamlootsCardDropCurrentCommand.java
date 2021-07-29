@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
 import fr.entrivax.streamlootsbase.PlayersHelper;
 
 public class StreamlootsCardDropCurrentCommand implements IStreamlootsCardCommand {

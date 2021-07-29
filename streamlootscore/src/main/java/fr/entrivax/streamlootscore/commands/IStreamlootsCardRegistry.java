@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots.commands;
+package fr.entrivax.streamlootscore.commands;
 
 public interface IStreamlootsCardRegistry {
     public StreamlootsCardRegistry registerBuilder(String cardType, IStreamlootsCommandBuilder commandBuilder);

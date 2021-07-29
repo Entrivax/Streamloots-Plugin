@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardCommand;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardCommand;
 import fr.entrivax.streamlootsbase.PlayersHelper;
 import fr.entrivax.streamlootsbase.Position;
 

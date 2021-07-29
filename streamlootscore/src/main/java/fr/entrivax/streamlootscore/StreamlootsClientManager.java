@@ -1,4 +1,4 @@
-package fr.entrivax.streamloots;
+package fr.entrivax.streamlootscore;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.entrivax.streamloots.commands.IStreamlootsCardRegistry;
+import fr.entrivax.streamlootscore.commands.IStreamlootsCardRegistry;
 
 public class StreamlootsClientManager {
     JavaPlugin _plugin;
